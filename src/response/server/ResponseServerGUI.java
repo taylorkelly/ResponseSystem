@@ -12,6 +12,7 @@ public class ResponseServerGUI extends JFrame {
     
     public ResponseServerGUI() {
         super("ResponseServer");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         userCount = new JLabel("0");
         JPanel southPanel = new JPanel();
 
@@ -19,6 +20,7 @@ public class ResponseServerGUI extends JFrame {
 
         southPanel.add(userCount);
         this.add(southPanel, BorderLayout.SOUTH);
+        this.pack();
     }
 
     public void updateUserCount(int num) {

@@ -3,15 +3,16 @@ package response.server;
 import response.server.packets.*;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import response.shared.PacketInterpreter;
 
 /**
  *
  * @author taylor
  */
-public class PacketInterpreter {
+public class ServerPacketInterpreter implements PacketInterpreter {
     protected DatagramSocket socket;
 
-    public PacketInterpreter(DatagramSocket socket) {
+    public ServerPacketInterpreter(DatagramSocket socket) {
         this.socket = socket;
     }
 
@@ -35,6 +36,9 @@ public class PacketInterpreter {
                 break;
             case 2:
                 specialPacket = new LogoutPacket(data, socket, address, port);
+                break;
+            case 3:
+                specialPacket = new PingPacket(data, socket, address, port);
                 break;
         }
 

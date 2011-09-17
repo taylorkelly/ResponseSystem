@@ -1,5 +1,6 @@
 package response.server;
 
+import response.shared.PacketReceiver;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -24,7 +25,7 @@ public class ResponseServer {
         return server;
     }
     private PacketReceiver receiver = null;
-    private PacketInterpreter interpreter = null;
+    private ServerPacketInterpreter interpreter = null;
     private UserKeeper keeper = null;
     private ResponseServerGUI gui = null;
 
@@ -40,7 +41,7 @@ public class ResponseServer {
         System.out.println("Successfully opened server on port " + port);
 
         keeper = new UserKeeper();
-        interpreter = new PacketInterpreter(socket);
+        interpreter = new ServerPacketInterpreter(socket);
         receiver = new PacketReceiver(socket, interpreter);
         gui = new ResponseServerGUI();
     }
@@ -51,13 +52,15 @@ public class ResponseServer {
     }
 
     public boolean login(InetAddress address) {
+        boolean login = keeper.login(address);
         gui.updateUserCount(keeper.onlineUsers());
-        return keeper.login(address);
+        return login;
     }
 
     public boolean logout(InetAddress address) {
+        boolean logout = keeper.logout(address);
         gui.updateUserCount(keeper.onlineUsers());
-        return keeper.logout(address);
+        return logout;
     }
 
     public String userData(InetAddress address) {

@@ -1,4 +1,4 @@
-package response.server;
+package response.shared;
 
 import java.io.*;
 import java.net.*;
