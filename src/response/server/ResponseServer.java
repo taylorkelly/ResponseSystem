@@ -14,6 +14,7 @@ public class ResponseServer {
 
     public static void main(String[] args) {
         getServer();
+        server.start();
     }
 
     public static ResponseServer getServer() {
@@ -25,6 +26,7 @@ public class ResponseServer {
     private PacketReceiver receiver = null;
     private PacketInterpreter interpreter = null;
     private UserKeeper keeper = null;
+    private ResponseServerGUI gui = null;
 
     public ResponseServer() {
         DatagramSocket socket = null;
@@ -40,14 +42,21 @@ public class ResponseServer {
         keeper = new UserKeeper();
         interpreter = new PacketInterpreter(socket);
         receiver = new PacketReceiver(socket, interpreter);
+        gui = new ResponseServerGUI();
+    }
+
+    public void start() {
         receiver.start();
+        gui.setVisible(true);
     }
 
     public boolean login(InetAddress address) {
+        gui.updateUserCount(keeper.onlineUsers());
         return keeper.login(address);
     }
 
     public boolean logout(InetAddress address) {
+        gui.updateUserCount(keeper.onlineUsers());
         return keeper.logout(address);
     }
 

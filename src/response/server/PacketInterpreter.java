@@ -29,7 +29,7 @@ public class PacketInterpreter {
 
         Packet specialPacket = null;
 
-        switch(packetType) {
+        switch (packetType) {
             case 1:
                 specialPacket = new LoginPacket(data, socket, address, port);
                 break;
@@ -38,9 +38,8 @@ public class PacketInterpreter {
                 break;
         }
 
-        if(specialPacket != null) {
+        if (specialPacket != null) {
             specialPacket.reconcile();
         }
-
     }
 }
