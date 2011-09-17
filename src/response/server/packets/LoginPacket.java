@@ -1,7 +1,9 @@
-package response.server;
+package response.server.packets;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import response.server.ResponseSender;
+import response.server.ResponseServer;
 
 /**
  *
