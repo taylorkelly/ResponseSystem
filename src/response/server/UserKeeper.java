@@ -31,4 +31,8 @@ public class UserKeeper {
         }
     }
 
+    public boolean logout(InetAddress address) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }

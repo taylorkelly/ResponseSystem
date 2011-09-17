@@ -1,8 +1,6 @@
 package response.server;
 
-import response.server.packets.LoginPacket;
-import response.server.packets.Packet;
-import java.net.DatagramPacket;
+import response.server.packets.*;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
@@ -34,6 +32,9 @@ public class PacketInterpreter {
         switch(packetType) {
             case 1:
                 specialPacket = new LoginPacket(data, socket, address, port);
+                break;
+            case 2:
+                specialPacket = new LogoutPacket(data, socket, address, port);
                 break;
         }
 

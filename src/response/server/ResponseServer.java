@@ -3,8 +3,6 @@ package response.server;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,6 +45,10 @@ public class ResponseServer {
 
     public boolean login(InetAddress address) {
         return keeper.login(address);
+    }
+
+    public boolean logout(InetAddress address) {
+        return keeper.logout(address);
     }
 
     public String userData(InetAddress address) {
