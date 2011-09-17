@@ -43,19 +43,14 @@ public class ResponseServer {
         interpreter = new PacketInterpreter(socket);
         receiver = new PacketReceiver(socket, interpreter);
         receiver.start();
-
-        for (int i = 0; i > -1; i++) {
-            System.out.println(i);
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ResponseServer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
 
-    public void login(InetAddress address) {
-        keeper.login(address);
+    public boolean login(InetAddress address) {
+        return keeper.login(address);
+    }
+
+    public String userData(InetAddress address) {
+        return keeper.userData(address);
     }
 
     public static int getValidPort() {

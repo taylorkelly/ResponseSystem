@@ -16,7 +16,7 @@ public class PacketInterpreter {
     }
 
     public void interpret(String data, InetAddress address, int port) {
-        String[] pieces = data.split("{");
+        String[] pieces = data.split("\\{");
 
         int packetType = -1;
         try {
