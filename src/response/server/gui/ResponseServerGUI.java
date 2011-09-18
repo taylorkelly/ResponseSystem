@@ -1,4 +1,4 @@
-package response.server;
+package response.server.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.*;
@@ -8,25 +8,25 @@ import javax.swing.*;
  * @author taylor
  */
 public class ResponseServerGUI extends JFrame {
-    private JLabel userCount;
+    StatsPanel stats = null;
     
     public ResponseServerGUI() {
         super("ResponseServer");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        userCount = new JLabel("0");
-        JPanel southPanel = new JPanel();
+        stats = new StatsPanel();
 
         
 
-        southPanel.add(userCount);
-        this.add(southPanel, BorderLayout.SOUTH);
+        this.add(stats, BorderLayout.SOUTH);
         this.pack();
     }
 
     public void updateUserCount(int num) {
-        userCount.setText(String.valueOf(num));
+        stats.updateUserCount(num);
     }
 
-    
+    public void updateWaitingCount(int num) {
+        stats.updateWaitingCount(num);
+    }
 
 }

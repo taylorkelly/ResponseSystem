@@ -25,7 +25,7 @@ public class QuestionRequestPacket extends Packet {
     @Override
     public void reconcile() {
         if (ResponseServer.getServer().isLoggedIn(address)) {
-            ResponseServer.getServer().isWaitingForQuestion(address, port);
+            ResponseServer.getServer().waitingForQuestion(address, port);
         } else {
             new ResponseSender(socket, "0", address, port).start();
         }

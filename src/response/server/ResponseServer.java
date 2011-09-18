@@ -1,5 +1,6 @@
 package response.server;
 
+import response.server.gui.ResponseServerGUI;
 import response.shared.PacketReceiver;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -53,6 +54,7 @@ public class ResponseServer {
     private ServerPacketInterpreter interpreter = null;
     private UserKeeper keeper = null;
     private ResponseServerGUI gui = null;
+    private QuestionHandler qHandler = null;
 
     public ResponseServer() {
         DatagramSocket socket = null;
@@ -69,6 +71,7 @@ public class ResponseServer {
         interpreter = new ServerPacketInterpreter(socket);
         receiver = new PacketReceiver(socket, interpreter);
         gui = new ResponseServerGUI();
+        qHandler = new QuestionHandler(socket);
     }
 
     public void start() {
@@ -84,7 +87,11 @@ public class ResponseServer {
 
     public boolean logout(InetAddress address) {
         boolean logout = keeper.logout(address);
+        if(logout) {
+            qHandler.remove(address);
+        }
         gui.updateUserCount(keeper.onlineUsers());
+        gui.updateWaitingCount(qHandler.waitingCount());
         return logout;
     }
 
@@ -96,7 +103,8 @@ public class ResponseServer {
         return keeper.isLoggedIn(address);
     }
 
-    public void isWaitingForQuestion(InetAddress address, int port) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void waitingForQuestion(InetAddress address, int port) {
+        qHandler.waitingForQuestion(address, port);
+        gui.updateWaitingCount(qHandler.waitingCount());
     }
 }
