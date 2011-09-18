@@ -43,10 +43,15 @@ public class ServerPacketInterpreter implements PacketInterpreter {
             case 4:
                 specialPacket = new QuestionRequestPacket(data, socket, address, port);
                 break;
+            case 5:
+                specialPacket = new QuestionResponsePacket(data, socket, address, port);
+                break;
         }
 
         if (specialPacket != null) {
             specialPacket.reconcile();
+        } else {
+            ResponseSender sender = new ResponseSender(socket, "0", address, port);
         }
     }
 }

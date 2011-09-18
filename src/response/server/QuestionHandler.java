@@ -16,7 +16,9 @@ public class QuestionHandler {
     private DatagramSocket socket;
     ConcurrentSkipListSet<InetAddress> waitingForQuestion = null;
     ConcurrentHashMap<InetAddress, Integer> portMap = null;
+
     ConcurrentSkipListSet<InetAddress> waitingForAnswer = null;
+    ConcurrentHashMap<InetAddress, String> userAnswers = null;
 
 
     public QuestionHandler(DatagramSocket socket) {
@@ -24,6 +26,7 @@ public class QuestionHandler {
         waitingForQuestion = new ConcurrentSkipListSet<InetAddress>(new AddressComparator());
         waitingForAnswer = new ConcurrentSkipListSet<InetAddress>(new AddressComparator());
         portMap = new ConcurrentHashMap<InetAddress, Integer>();
+        userAnswers = new ConcurrentHashMap<InetAddress, String>();
     }
 
     public void waitingForQuestion(InetAddress address, int port) {
@@ -58,5 +61,13 @@ public class QuestionHandler {
             return false;
         }
 
+    }
+
+    public boolean isWaitingForAnswer(InetAddress address) {
+        return waitingForAnswer.contains(address);
+    }
+
+    public void setAnswer(InetAddress address, String answer) {
+        userAnswers.put(address, answer);
     }
 }

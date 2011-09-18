@@ -114,4 +114,12 @@ public class ResponseServer {
         gui.updateWaitingCount(qHandler.waitingCount());
         return ret;
     }
+
+    public boolean isWaitingForAnswer(InetAddress address) {
+        return qHandler.isWaitingForAnswer(address);
+    }
+
+    public void setAnswer(InetAddress address, String answer) {
+        qHandler.setAnswer(address, answer);
+    }
 }
