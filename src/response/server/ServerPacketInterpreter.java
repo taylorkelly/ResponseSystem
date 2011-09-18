@@ -40,6 +40,9 @@ public class ServerPacketInterpreter implements PacketInterpreter {
             case 3:
                 specialPacket = new PingPacket(data, socket, address, port);
                 break;
+            case 4:
+                specialPacket = new QuestionRequestPacket(data, socket, address, port);
+                break;
         }
 
         if (specialPacket != null) {

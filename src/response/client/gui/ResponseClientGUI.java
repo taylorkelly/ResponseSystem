@@ -1,5 +1,6 @@
-package response.client;
+package response.client.gui;
 
+import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.net.InetAddress;
@@ -20,6 +21,13 @@ public class ResponseClientGUI extends JFrame {
         this.port = port;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addWindowListener(new CloseListener());
+
+        ScorePanel scorePanel = new ScorePanel();
+        MainPanel main = new MainPanel(address, port);
+
+
+        this.add(scorePanel, BorderLayout.NORTH);
+        this.add(main, BorderLayout.CENTER);
         this.pack();
     }
 

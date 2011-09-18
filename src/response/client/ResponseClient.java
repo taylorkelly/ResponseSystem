@@ -1,5 +1,6 @@
 package response.client;
 
+import response.client.gui.ResponseClientGUI;
 import java.net.*;
 import javax.swing.JOptionPane;
 import response.client.packets.LoginPacket;

@@ -16,7 +16,7 @@ public class ResponseServerGUI extends JFrame {
         userCount = new JLabel("0");
         JPanel southPanel = new JPanel();
 
-
+        
 
         southPanel.add(userCount);
         this.add(southPanel, BorderLayout.SOUTH);

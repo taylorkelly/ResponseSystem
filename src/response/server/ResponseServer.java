@@ -24,6 +24,31 @@ public class ResponseServer {
         }
         return server;
     }
+
+    public static int getValidPort() {
+        int port = -1;
+
+        while (port == -1) {
+            String s = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Enter the port to open to:",
+                    "Port",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "4445");
+
+            if ((s != null) && (s.length() > 0)) {
+                try {
+                    if (Integer.parseInt(s) > 0) {
+                        port = Integer.parseInt(s);
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+        return port;
+    }
     private PacketReceiver receiver = null;
     private ServerPacketInterpreter interpreter = null;
     private UserKeeper keeper = null;
@@ -67,28 +92,11 @@ public class ResponseServer {
         return keeper.userData(address);
     }
 
-    public static int getValidPort() {
-        int port = -1;
+    public boolean isLoggedIn(InetAddress address) {
+        return keeper.isLoggedIn(address);
+    }
 
-        while (port == -1) {
-            String s = (String) JOptionPane.showInputDialog(
-                    null,
-                    "Enter the port to open to:",
-                    "Port",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    null,
-                    "4445");
-
-            if ((s != null) && (s.length() > 0)) {
-                try {
-                    if (Integer.parseInt(s) > 0) {
-                        port = Integer.parseInt(s);
-                    }
-                } catch (Exception e) {
-                }
-            }
-        }
-        return port;
+    public void isWaitingForQuestion(InetAddress address, int port) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

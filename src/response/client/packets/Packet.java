@@ -33,7 +33,7 @@ public abstract class Packet {
     public final String sendAndWaitForResponse(int waitTime) {
         send();
         int SLEEP_TIME = 50;
-        for (int i = 0; i < waitTime; i += SLEEP_TIME) {
+        for (int i = 0; (i < waitTime) || (waitTime == -1); i += SLEEP_TIME) {
             try {
                 Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException ex) {

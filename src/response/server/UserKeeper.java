@@ -44,6 +44,10 @@ public class UserKeeper {
         return online.size();
     }
 
+    boolean isLoggedIn(InetAddress address) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     private class AddressComparator implements Comparator<InetAddress> {
         public int compare(InetAddress t, InetAddress t1) {
             byte[] taddress = t.getAddress();
