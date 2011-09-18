@@ -1,5 +1,6 @@
 package response.server;
 
+import response.shared.QuestionType;
 import response.server.gui.ResponseServerGUI;
 import response.shared.PacketReceiver;
 import java.net.DatagramSocket;
@@ -106,5 +107,11 @@ public class ResponseServer {
     public void waitingForQuestion(InetAddress address, int port) {
         qHandler.waitingForQuestion(address, port);
         gui.updateWaitingCount(qHandler.waitingCount());
+    }
+
+    public boolean setQuestion(QuestionType questionType) {
+        boolean ret = qHandler.setQuestion(questionType);
+        gui.updateWaitingCount(qHandler.waitingCount());
+        return ret;
     }
 }

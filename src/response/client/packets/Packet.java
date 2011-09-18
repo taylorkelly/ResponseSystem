@@ -7,8 +7,6 @@ package response.client.packets;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -82,6 +80,7 @@ public abstract class Packet {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length, address, port);
                 socket.send(packet);
 
+                buf = new byte[1024];
                 packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
                 String received = new String(packet.getData(), 0, packet.getLength());

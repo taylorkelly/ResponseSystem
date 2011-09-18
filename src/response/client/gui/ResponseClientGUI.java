@@ -1,6 +1,7 @@
 package response.client.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.net.InetAddress;
@@ -28,7 +29,9 @@ public class ResponseClientGUI extends JFrame {
 
         this.add(scorePanel, BorderLayout.NORTH);
         this.add(main, BorderLayout.CENTER);
-        this.pack();
+        
+        this.setMinimumSize(new Dimension(500, 500));
+
     }
 
     private class CloseListener implements WindowListener {

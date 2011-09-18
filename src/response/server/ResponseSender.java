@@ -29,7 +29,6 @@ public class ResponseSender extends Thread {
     public void run() {
         try {
             byte[] buf = response.getBytes();
-
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, port);
             socket.send(packet);
         } catch (IOException e) {
