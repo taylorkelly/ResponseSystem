@@ -12,13 +12,14 @@ public class ResponseServerGUI extends JFrame {
     private StatsPanel stats = null;
     private QuestionOptionPanel qOPanel = null;
     private QuestionPanel qPanel = null;
-    
+    private ControlPanel cPanel = null;
+
     public ResponseServerGUI() {
         super("ResponseServer");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         stats = new StatsPanel();
         qOPanel = new QuestionOptionPanel(this);
-        
+
         this.add(qOPanel, BorderLayout.EAST);
         this.add(stats, BorderLayout.SOUTH);
         this.pack();
@@ -33,11 +34,16 @@ public class ResponseServerGUI extends JFrame {
     }
 
     public void updateDisplay(QuestionType questionType) {
-        switch(questionType) {
+        switch (questionType) {
             case MULTI_CHOICE:
                 qPanel = new MultiChoicePanel();
                 this.add(qPanel, BorderLayout.CENTER);
                 break;
         }
+
+        cPanel = new ControlPanel(this);
+        this.remove(qOPanel);
+        this.add(cPanel, BorderLayout.EAST);
+
     }
 }

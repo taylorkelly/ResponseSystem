@@ -46,6 +46,9 @@ public class ServerPacketInterpreter implements PacketInterpreter {
             case 5:
                 specialPacket = new QuestionResponsePacket(data, socket, address, port);
                 break;
+            case 6:
+                specialPacket = new AnswerRequestPacket(data, socket, address, port);
+                break;
         }
 
         if (specialPacket != null) {

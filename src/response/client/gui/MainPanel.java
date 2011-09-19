@@ -68,6 +68,7 @@ public class MainPanel extends JPanel {
                         repaint();
                         break;
                 }
+                String answer = new AnswerRequestPacket(address, port).sendAndWaitForResponse(-1);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Invalid Response for Question Type",
